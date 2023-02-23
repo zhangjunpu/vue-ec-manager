@@ -1,0 +1,17 @@
+https://www.fastmock.site/mock/bf1fcb3c2e2945669c2c8d0ecb8009b8/api
+
+/login
+post
+username password
+
+商品列表
+/getGoodsList
+
+用户列表
+/getUserList
+
+角色列表
+/getRoleList
+
+极限列表
+/getAuthorityList

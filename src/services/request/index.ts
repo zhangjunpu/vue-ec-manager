@@ -21,9 +21,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (res) => {
-    const {
-      data: { code },
-    } = res.data;
+    const code = res.data.code || (res.data.data && res.data.data.code);
     if (code != 200) {
       return Promise.reject(res.data);
     } else {

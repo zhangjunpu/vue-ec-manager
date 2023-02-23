@@ -22,12 +22,12 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import type { FormInstance, FormRules } from "element-plus";
 import { ElMessage } from "element-plus";
-import type { LoginData, LoginRes } from "@/types/data";
+import type { LoginRes } from "@/types/resp";
 import { requestLogin } from "@/services/api";
 import { ACCESS_TOKEN } from "@/common/constant";
 import cache from "@/utils/cache";
 
-const data = reactive<LoginData>({
+const data = reactive({
   username: "",
   password: "",
 });
@@ -56,16 +56,15 @@ const rules = reactive<FormRules>({
 });
 
 const ruleFormRef = ref<FormInstance>();
-const router = useRouter();
-const isLoading = ref<boolean>(false);
+const isLoading = ref(false);
 
+const router = useRouter();
 const handleSubmit = (formEl?: FormInstance) => {
   formEl?.validate(async (valid: boolean) => {
     if (valid) {
       isLoading.value = true;
       try {
         const res = await requestLogin(data);
-        console.log(res);
         const { token } = res.data;
         cache.setCache(ACCESS_TOKEN, token);
         router.push("/home");
