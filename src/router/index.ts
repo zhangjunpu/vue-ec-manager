@@ -5,18 +5,27 @@ import { ACCESS_TOKEN } from "@/common/constant";
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    redirect: "/home",
+    redirect: "/main",
   },
   {
-    path: "/home",
-    name: "home",
-    component: () => import("../views/HomeView.vue"),
-    redirect: "/home/goods",
+    path: "/main",
+    name: "main",
+    component: () => import("../views/MainView.vue"),
+    redirect: "/main/home",
     children: [
+      {
+        path: "home",
+        name: "home",
+        component: () => import("../views/main/HomeView.vue"),
+        meta: {
+          isShow: true,
+          title: "首页",
+        },
+      },
       {
         path: "goods",
         name: "goods",
-        component: () => import("../views/home/GoodsView.vue"),
+        component: () => import("../views/main/GoodsView.vue"),
         meta: {
           isShow: true,
           title: "商品列表",
@@ -25,7 +34,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: "user",
         name: "user",
-        component: () => import("../views/home/UserView.vue"),
+        component: () => import("../views/main/UserView.vue"),
         meta: {
           isShow: true,
           title: "用户列表",
@@ -34,7 +43,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: "role",
         name: "role",
-        component: () => import("../views/home/RoleView.vue"),
+        component: () => import("../views/main/RoleView.vue"),
         meta: {
           isShow: true,
           title: "角色列表",
@@ -43,7 +52,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: "auth/:id",
         name: "auth",
-        component: () => import("../views/home/AuthView.vue"),
+        component: () => import("../views/main/AuthView.vue"),
       },
     ],
   },

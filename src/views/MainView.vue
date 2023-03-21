@@ -10,7 +10,7 @@
       <el-container>
         <el-aside class="aside">
           <el-menu class="menu-container" :default-active="route.path" router>
-            <el-menu-item :index="/home/ + item.path" v-for="item in childrenRoutes" :key="item.path">
+            <el-menu-item :index="/main/ + item.path" v-for="item in childrenRoutes" :key="item.path">
               <span>{{ item.meta?.title }}</span>
             </el-menu-item>
           </el-menu>
@@ -33,7 +33,7 @@ const route = useRoute();
 
 const childrenRoutes = router
   .getRoutes()
-  .find((item) => item.name === "home")
+  .find((item) => item.name === "main")
   ?.children?.filter((item) => item.meta?.isShow === true);
 
 // events
